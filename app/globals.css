@@ -1,0 +1,189 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-accent: var(--accent);
+  --color-accent-muted: var(--accent-muted);
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-primary: var(--text-primary);
+  --color-secondary: var(--text-secondary);
+  --color-border: var(--border);
+
+  --font-display: "Syne", sans-serif;
+  --font-body: "Inter", sans-serif;
+
+  --animate-ticker: ticker 25s linear infinite;
+
+  @keyframes ticker {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
+
+/* ─── CSS Custom Properties ──────────────────────────────── */
+:root {
+  --bg: #0d0d0d;
+  --surface: #151515;
+  --accent: #c8ff00;
+  --accent-muted: rgba(200, 255, 0, 0.08);
+  --text-primary: #f2f2f2;
+  --text-secondary: #888888;
+  --border: #1f1f1f;
+  --radius: 12px;
+}
+
+/* ─── Base Reset ─────────────────────────────────────────── */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  line-height: 1.6;
+}
+
+/* ─── Selection Color ────────────────────────────────────── */
+::selection {
+  background: rgba(200, 255, 0, 0.25);
+  color: #f2f2f2;
+}
+
+/* ─── Scrollbar ──────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f1f1f;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333;
+}
+
+/* ─── Typography ─────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+/* ─── Ticker Animation ───────────────────────────────────── */
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-track {
+  animation: ticker 25s linear infinite;
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.ticker-track:hover {
+  animation-play-state: paused;
+}
+
+/* ─── Glow Effects ───────────────────────────────────────── */
+.glow-lime {
+  box-shadow: 0 0 20px rgba(200, 255, 0, 0.2), 0 0 60px rgba(200, 255, 0, 0.05);
+}
+
+.glow-lime-hover {
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.glow-lime-hover:hover {
+  box-shadow: 0 0 24px rgba(200, 255, 0, 0.15), 0 0 48px rgba(200, 255, 0, 0.05);
+  border-color: rgba(200, 255, 0, 0.3) !important;
+}
+
+/* ─── Noise Grain Overlay ────────────────────────────────── */
+.noise-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+  border-radius: inherit;
+}
+
+/* ─── Glass Morphism ─────────────────────────────────────── */
+.glass {
+  background: rgba(21, 21, 21, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* ─── Gradient Text ──────────────────────────────────────── */
+.gradient-text {
+  background: linear-gradient(135deg, #f2f2f2 0%, #888888 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.accent-gradient-text {
+  background: linear-gradient(135deg, #c8ff00 0%, #a8e000 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─── Focus Styles ───────────────────────────────────────── */
+*:focus-visible {
+  outline: 2px solid #c8ff00;
+  outline-offset: 2px;
+}
+
+/* ─── Section Spacing ────────────────────────────────────── */
+.section-padding {
+  padding: 96px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 64px 0;
+  }
+}
+
+/* ─── Admin Sidebar ──────────────────────────────────────── */
+.admin-sidebar {
+  background: #0a0a0a;
+  border-right: 1px solid #1f1f1f;
+}
+
+/* ─── Calendly Override ──────────────────────────────────── */
+.calendly-inline-widget {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* ─── Recharts Custom ────────────────────────────────────── */
+.recharts-cartesian-grid-horizontal line,
+.recharts-cartesian-grid-vertical line {
+  stroke: #1f1f1f !important;
+}
+
+.recharts-text {
+  fill: #888 !important;
+  font-family: "Inter", sans-serif !important;
+  font-size: 12px !important;
+}
